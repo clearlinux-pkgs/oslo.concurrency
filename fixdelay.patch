@@ -1,0 +1,11 @@
+--- oslo.concurrency-1.8.1/oslo_concurrency/lockutils.py~	2015-07-07 15:41:29.000000000 -0400
++++ oslo.concurrency-1.8.1/oslo_concurrency/lockutils.py	2015-07-19 01:48:28.883387290 -0400
+@@ -152,7 +152,7 @@
+         @six.wraps(func)
+         def wrapper(*args, **kwargs):
+             hg = _Hourglass(log_periodicity)
+-            r = retrying.Retrying(wait_fixed=delay_ms,
++            r = retrying.Retrying(wait_incrementing_start = 1, wait_incrementing_increment = 1,
+                                   retry_on_exception=retry_on_exception,
+                                   stop_func=functools.partial(never_stop, hg))
+             return r.call(func, *args, **kwargs)

@@ -1,0 +1,420 @@
+From 3a64df4ef8a20c9eaf7ef3553638b7a4ee5928bc Mon Sep 17 00:00:00 2001
+From: Cristian Velazquez <cristian.velazquez@intel.com>
+Date: Thu, 20 Aug 2015 16:24:27 -0500
+Subject: [PATCH] Adding debug logging messages
+
+---
+ oslo_concurrency/lockutils.py | 77 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 77 insertions(+)
+
+diff --git a/oslo_concurrency/lockutils.py b/oslo_concurrency/lockutils.py
+index b2e96a2..1fa98b9 100644
+--- a/oslo_concurrency/lockutils.py
++++ b/oslo_concurrency/lockutils.py
+@@ -54,7 +54,9 @@ _opts = [
+ 
+ 
+ def _register_opts(conf):
++    LOG.debug('0Speedy Gonzalez')
+     conf.register_opts(_opts, group='oslo_concurrency')
++    LOG.debug('1Speedy Gonzalez')
+ 
+ 
+ CONF = cfg.CONF
+@@ -66,7 +68,9 @@ def set_defaults(lock_path):
+ 
+     This can be used by tests to set lock_path to a temporary directory.
+     """
++    LOG.debug('0Speedy Gonzalez')
+     cfg.set_defaults(_opts, lock_path=lock_path)
++    LOG.debug('1Speedy Gonzalez')
+ 
+ 
+ def get_lock_path(conf):
+@@ -75,7 +79,9 @@ def get_lock_path(conf):
+     :param conf: Configuration object
+     :type conf: oslo_config.cfg.ConfigOpts
+     """
++    LOG.debug('0Speedy Gonzalez')
+     _register_opts(conf)
++    LOG.debug('1Speedy Gonzalez')
+     return conf.oslo_concurrency.lock_path
+ 
+ 
+@@ -92,14 +98,19 @@ class _Hourglass(object):
+         The drain() method will now only return true until the period
+         is reached again.
+         """
++        LOG.debug('0Speedy Gonzalez')
+         self._last_flipped = time.time()
++        LOG.debug('1Speedy Gonzalez')
+ 
+     def drain(self):
+         """Drains the hourglass, returns True if period reached."""
++        LOG.debug('0Speedy Gonzalez')
+         if self._last_flipped is None:
++            LOG.debug('1Speedy Gonzalez')
+             return True
+         else:
+             elapsed = max(0, time.time() - self._last_flipped)
++            LOG.debug('1Speedy Gonzalez')
+             return elapsed >= self._period
+ 
+ 
+@@ -120,8 +131,11 @@ def _lock_retry(delay, filename,
+         # TODO(harlowja): once/if https://github.com/rholder/retrying/pull/20
+         # gets merged we should just switch to using that to avoid having to
+         # catch and inspect all execeptions (and there types...)
++        LOG.debug('0Speedy Gonzalez')
+         if isinstance(e, IOError) and e.errno in (errno.EACCES, errno.EAGAIN):
++            LOG.debug('1Speedy Gonzalez')
+             return True
++        LOG.debug('1Speedy Gonzalez')
+         raise threading.ThreadError(_("Unable to acquire lock on"
+                                       " `%(filename)s` due to"
+                                       " %(exception)s") %
+@@ -134,12 +148,14 @@ def _lock_retry(delay, filename,
+     # to acquire the underlying lock...); after a threshold has been passed,
+     # and only at a fixed rate...
+     def never_stop(hg, attempt_number, delay_since_first_attempt_ms):
++        LOG.debug('0Speedy Gonzalez')
+         delay_since_first_attempt = delay_since_first_attempt_ms / 1000.0
+         if delay_since_first_attempt >= log_begins_after:
+             if hg.drain():
+                 LOG.debug("Attempting to acquire %s (delayed %0.2f seconds)",
+                           filename, delay_since_first_attempt)
+                 hg.flip()
++        LOG.debug('1Speedy Gonzalez')
+         return False
+ 
+     # The retrying library seems to prefer milliseconds for some reason; this
+@@ -151,10 +167,12 @@ def _lock_retry(delay, filename,
+ 
+         @six.wraps(func)
+         def wrapper(*args, **kwargs):
++            LOG.debug('0Speedy Gonzalez')
+             hg = _Hourglass(log_periodicity)
+             r = retrying.Retrying(wait_incrementing_start = 1, wait_incrementing_increment = 1,
+                                   retry_on_exception=retry_on_exception,
+                                   stop_func=functools.partial(never_stop, hg))
++            LOG.debug('1Speedy Gonzalez')
+             return r.call(func, *args, **kwargs)
+ 
+         return wrapper
+@@ -186,7 +204,9 @@ class _FileLock(object):
+         self.acquire_time = None
+ 
+     def acquire(self, delay=0.01):
++        LOG.debug('0Speedy Gonzalez')
+         if delay < 0:
++            LOG.debug('1Speedy Gonzalez')
+             raise ValueError("Delay must be greater than or equal to zero")
+ 
+         basedir = os.path.dirname(self.fname)
+@@ -210,15 +230,20 @@ class _FileLock(object):
+         self.acquire_time = time.time()
+         LOG.debug('Acquired file lock "%s" after waiting %0.3fs',
+                   self.fname, (self.acquire_time - start_time))
++        LOG.debug('1Speedy Gonzalez')
+ 
+         return True
+ 
+     def __enter__(self):
++        LOG.debug('0Speedy Gonzalez')
+         self.acquire()
++        LOG.debug('1Speedy Gonzalez')
+         return self
+ 
+     def release(self):
++        LOG.debug('0Speedy Gonzalez')
+         if self.acquire_time is None:
++            LOG.debug('1Speedy Gonzalez')
+             raise threading.ThreadError(_("Unable to release an unacquired"
+                                           " lock"))
+         try:
+@@ -236,6 +261,7 @@ class _FileLock(object):
+             except IOError:
+                 LOG.exception(_LE("Could not close the acquired file handle"
+                                   " `%s`"), self.fname)
++        LOG.debug('1Speedy Gonzalez')
+ 
+     def __exit__(self, exc_type, exc_val, exc_tb):
+         self.release()
+@@ -252,18 +278,26 @@ class _FileLock(object):
+ 
+ class _WindowsLock(_FileLock):
+     def trylock(self):
++        LOG.debug('0Speedy Gonzalez')
+         msvcrt.locking(self.lockfile.fileno(), msvcrt.LK_NBLCK, 1)
++        LOG.debug('1Speedy Gonzalez')
+ 
+     def unlock(self):
++        LOG.debug('0Speedy Gonzalez')
+         msvcrt.locking(self.lockfile.fileno(), msvcrt.LK_UNLCK, 1)
++        LOG.debug('1Speedy Gonzalez')
+ 
+ 
+ class _FcntlLock(_FileLock):
+     def trylock(self):
++        LOG.debug('0Speedy Gonzalez')
+         fcntl.lockf(self.lockfile, fcntl.LOCK_EX | fcntl.LOCK_NB)
++        LOG.debug('1Speedy Gonzalez')
+ 
+     def unlock(self):
++        LOG.debug('0Speedy Gonzalez')
+         fcntl.lockf(self.lockfile, fcntl.LOCK_UN)
++        LOG.debug('1Speedy Gonzalez')
+ 
+ 
+ if os.name == 'nt':
+@@ -295,12 +329,15 @@ class Semaphores(object):
+         Returns an newly constructed semaphore (or an existing one if it was
+         already created for the given name).
+         """
++        LOG.debug('0Speedy Gonzalez')
+         with self._lock:
+             try:
++                LOG.debug('1Speedy Gonzalez')
+                 return self._semaphores[name]
+             except KeyError:
+                 sem = threading.Semaphore()
+                 self._semaphores[name] = sem
++                LOG.debug('1Speedy Gonzalez')
+                 return sem
+ 
+     def __len__(self):
+@@ -314,6 +351,7 @@ _semaphores = Semaphores()
+ def _get_lock_path(name, lock_file_prefix, lock_path=None):
+     # NOTE(mikal): the lock name cannot contain directory
+     # separators
++    LOG.debug('0Speedy Gonzalez')
+     name = name.replace(os.sep, '_')
+     if lock_file_prefix:
+         sep = '' if lock_file_prefix.endswith('-') else '-'
+@@ -322,13 +360,17 @@ def _get_lock_path(name, lock_file_prefix, lock_path=None):
+     local_lock_path = lock_path or CONF.oslo_concurrency.lock_path
+ 
+     if not local_lock_path:
++        LOG.debug('1Speedy Gonzalez')
+         raise cfg.RequiredOptError('lock_path')
++    LOG.debug('1Speedy Gonzalez')
+ 
+     return os.path.join(local_lock_path, name)
+ 
+ 
+ def external_lock(name, lock_file_prefix=None, lock_path=None):
++    LOG.debug('0Speedy Gonzalez')
+     lock_file_path = _get_lock_path(name, lock_file_prefix, lock_path)
++    LOG.debug('1Speedy Gonzalez')
+ 
+     return InterProcessLock(lock_file_path)
+ 
+@@ -338,6 +380,7 @@ def remove_external_lock_file(name, lock_file_prefix=None, lock_path=None,
+     """Remove an external lock file when it's not used anymore
+     This will be helpful when we have a lot of lock files
+     """
++    LOG.debug('0Speedy Gonzalez')
+     with internal_lock(name, semaphores=semaphores):
+         lock_file_path = _get_lock_path(name, lock_file_prefix, lock_path)
+         try:
+@@ -345,11 +388,14 @@ def remove_external_lock_file(name, lock_file_prefix=None, lock_path=None,
+         except OSError:
+             LOG.info(_LI('Failed to remove file %(file)s'),
+                      {'file': lock_file_path})
++    LOG.debug('1Speedy Gonzalez')
+ 
+ 
+ def internal_lock(name, semaphores=None):
++    LOG.debug('0Speedy Gonzalez')
+     if semaphores is None:
+         semaphores = _semaphores
++    LOG.debug('1Speedy Gonzalez')
+     return semaphores.get(name)
+ 
+ 
+@@ -385,6 +431,7 @@ def lock(name, lock_file_prefix=None, external=False, lock_path=None,
+ 
+     :param delay: Delay between acquisition attempts (in seconds).
+     """
++    LOG.debug('0Speedy Gonzalez')
+     int_lock = internal_lock(name, semaphores=semaphores)
+     with int_lock:
+         if do_log:
+@@ -394,14 +441,17 @@ def lock(name, lock_file_prefix=None, external=False, lock_path=None,
+                 ext_lock = external_lock(name, lock_file_prefix, lock_path)
+                 ext_lock.acquire(delay=delay)
+                 try:
++                    LOG.debug('1Speedy Gonzalez')
+                     yield ext_lock
+                 finally:
+                     ext_lock.release()
+             else:
++                LOG.debug('1Speedy Gonzalez')
+                 yield int_lock
+         finally:
+             if do_log:
+                 LOG.debug('Releasing semaphore "%(lock)s"', {'lock': name})
++    LOG.debug('1Speedy Gonzalez')
+ 
+ 
+ def synchronized(name, lock_file_prefix=None, external=False, lock_path=None,
+@@ -432,6 +482,7 @@ def synchronized(name, lock_file_prefix=None, external=False, lock_path=None,
+     def wrap(f):
+         @six.wraps(f)
+         def inner(*args, **kwargs):
++            LOG.debug('0Speedy Gonzalez')
+             t1 = time.time()
+             t2 = None
+             try:
+@@ -442,6 +493,7 @@ def synchronized(name, lock_file_prefix=None, external=False, lock_path=None,
+                               'waited %(wait_secs)0.3fs',
+                               {'name': name, 'function': f.__name__,
+                                'wait_secs': (t2 - t1)})
++                    LOG.debug('1Speedy Gonzalez')
+                     return f(*args, **kwargs)
+             finally:
+                 t3 = time.time()
+@@ -454,6 +506,7 @@ def synchronized(name, lock_file_prefix=None, external=False, lock_path=None,
+                           '%(held_secs)s',
+                           {'name': name, 'function': f.__name__,
+                            'held_secs': held_secs})
++            LOG.debug('0Speedy Gonzalez')
+         return inner
+     return wrap
+ 
+@@ -497,12 +550,14 @@ def _lock_wrapper(argv):
+     afterwards and the return value will be preserved.
+     """
+ 
++    LOG.debug('0Speedy Gonzalez')
+     lock_dir = tempfile.mkdtemp()
+     os.environ["OSLO_LOCK_PATH"] = lock_dir
+     try:
+         ret_val = subprocess.call(argv[1:])
+     finally:
+         shutil.rmtree(lock_dir, ignore_errors=True)
++    LOG.debug('1Speedy Gonzalez')
+     return ret_val
+ 
+ 
+@@ -532,6 +587,7 @@ class ReaderWriterLock(object):
+         # doesn't appear to currently be monkey patched and therefore isn't
+         # reliable to use (and breaks badly when used as all threads share
+         # the same current_thread() object)...
++        LOG.debug('0Speedy Gonzalez')
+         try:
+             import eventlet
+             from eventlet import patcher
+@@ -539,8 +595,10 @@ class ReaderWriterLock(object):
+         except ImportError:
+             green_threaded = False
+         if green_threaded:
++            LOG.debug('1Speedy Gonzalez')
+             return lambda: eventlet.getcurrent()
+         else:
++            LOG.debug('1Speedy Gonzalez')
+             return lambda: threading.current_thread()
+ 
+     def __init__(self):
+@@ -572,13 +630,17 @@ class ReaderWriterLock(object):
+         :return: whether the current thread is a active/pending writer
+         :rtype: boolean
+         """
++        LOG.debug('0Speedy Gonzalez')
+         me = self._current_thread()
+         with self._cond:
+             if self._writer is not None and self._writer == me:
++                LOG.debug('1Speedy Gonzalez')
+                 return True
+             if check_pending:
++                LOG.debug('1Speedy Gonzalez')
+                 return me in self._pending_writers
+             else:
++                LOG.debug('1Speedy Gonzalez')
+                 return False
+ 
+     @property
+@@ -588,12 +650,16 @@ class ReaderWriterLock(object):
+         :return: constant defining what the active owners type is
+         :rtype: WRITER/READER/None
+         """
++        LOG.debug('0Speedy Gonzalez')
+         with self._cond:
+             if self._writer is not None:
++                LOG.debug('1Speedy Gonzalez')
+                 return self.WRITER
+             if self._readers:
++                LOG.debug('1Speedy Gonzalez')
+                 return self.READER
+             return None
++        LOG.debug('1Speedy Gonzalez')
+ 
+     def _is_reader(self):
+         """Returns if the caller is one of the readers.
+@@ -603,9 +669,12 @@ class ReaderWriterLock(object):
+         :return: whether the current thread is a active/pending reader
+         :rtype: boolean
+         """
++        LOG.debug('0Speedy Gonzalez')
+         me = self._current_thread()
+         with self._cond:
++            LOG.debug('1Speedy Gonzalez')
+             return me in self._readers
++        LOG.debug('1Speedy Gonzalez')
+ 
+     @contextlib.contextmanager
+     def read_lock(self):
+@@ -616,8 +685,10 @@ class ReaderWriterLock(object):
+         Raises a ``RuntimeError`` if an active or pending writer tries to
+         acquire a read lock as this is disallowed.
+         """
++        LOG.debug('0Speedy Gonzalez')
+         me = self._current_thread()
+         if self._is_writer():
++            LOG.debug('1Speedy Gonzalez')
+             raise RuntimeError("Writer %s can not acquire a read lock"
+                                " while holding/waiting for the write lock"
+                                % me)
+@@ -628,6 +699,7 @@ class ReaderWriterLock(object):
+             # No active writer; we are good to become a reader.
+             self._readers[me] += 1
+         try:
++            LOG.debug('1Speedy Gonzalez')
+             yield self
+         finally:
+             # I am no longer a reader, remove *one* occurrence of myself.
+@@ -642,6 +714,7 @@ class ReaderWriterLock(object):
+                     self._readers[me] = claims - 1
+                 if not self._readers:
+                     self._cond.notify_all()
++            LOG.debug('1Speedy Gonzalez')
+ 
+     @contextlib.contextmanager
+     def write_lock(self):
+@@ -652,12 +725,15 @@ class ReaderWriterLock(object):
+         Raises a ``RuntimeError`` if an active reader attempts to acquire a
+         writer lock as this is disallowed.
+         """
++        LOG.debug('0Speedy Gonzalez')
+         me = self._current_thread()
+         if self._is_reader():
++            LOG.debug('1Speedy Gonzalez')
+             raise RuntimeError("Reader %s to writer privilege"
+                                " escalation not allowed" % me)
+         if self._is_writer(check_pending=False):
+             # Already the writer; this allows for basic reentrancy.
++            LOG.debug('1Speedy Gonzalez')
+             yield self
+         else:
+             with self._cond:
+@@ -670,6 +746,7 @@ class ReaderWriterLock(object):
+                     self._cond.wait()
+                 self._writer = self._pending_writers.popleft()
+             try:
++                LOG.debug('1Speedy Gonzalez')
+                 yield self
+             finally:
+                 with self._cond:
+-- 
+2.1.0
+
