@@ -1,4 +1,5 @@
 PKG_NAME := oslo.concurrency
-URL := http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-1.8.2.tar.gz
+URL := http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-2.6.0.tar.gz
+ARCHIVES :=
 
 include ../common/Makefile.common
