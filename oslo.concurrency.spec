@@ -4,7 +4,7 @@
 #
 Name     : oslo.concurrency
 Version  : 2.6.0
-Release  : 20
+Release  : 21
 URL      : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-2.6.0.tar.gz
 Source0  : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-2.6.0.tar.gz
 Summary  : Oslo Concurrency library
@@ -26,6 +26,7 @@ BuildRequires : extras-python
 BuildRequires : fasteners-python
 BuildRequires : fixtures-python
 BuildRequires : flake8-python
+BuildRequires : funcsigs-python
 BuildRequires : futures-python
 BuildRequires : greenlet-python
 BuildRequires : hacking
@@ -91,6 +92,13 @@ bin components for the oslo.concurrency package.
 %package python
 Summary: python components for the oslo.concurrency package.
 Group: Default
+Requires: Babel-python
+Requires: oslo.i18n-python
+Requires: oslo.utils-python
+Requires: retrying-python
+Requires: iso8601-python
+Requires: fasteners-python
+Requires: six-python
 
 %description python
 python components for the oslo.concurrency package.
