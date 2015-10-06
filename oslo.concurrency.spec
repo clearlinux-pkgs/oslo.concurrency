@@ -4,7 +4,7 @@
 #
 Name     : oslo.concurrency
 Version  : 2.6.0
-Release  : 22
+Release  : 23
 URL      : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-2.6.0.tar.gz
 Source0  : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-2.6.0.tar.gz
 Summary  : Oslo Concurrency library
