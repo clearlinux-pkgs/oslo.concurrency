@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+3.3.0
+-----
+
+* Remove unnecessary package in setup.cfg
+* Updated from global requirements
+* Updated from global requirements
+
 3.2.0
 -----
 
