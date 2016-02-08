@@ -1,6 +1,18 @@
 CHANGES
 =======
 
+3.4.0
+-----
+
+* Update translation setup
+* Add prlimit parameter to execute()
+* Updated from global requirements
+* Updated from global requirements
+* Updated from global requirements
+* Updated from global requirements
+* Imported Translations from Zanata
+* Updated from global requirements
+
 3.3.0
 -----
 
