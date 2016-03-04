@@ -1,6 +1,18 @@
 CHANGES
 =======
 
+3.6.0
+-----
+
+* Updated from global requirements
+
+3.5.0
+-----
+
+* Updated from global requirements
+* Make ProcessExecutionError picklable
+* Updated from global requirements
+
 3.4.0
 -----
 
