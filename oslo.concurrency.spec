@@ -4,7 +4,7 @@
 #
 Name     : oslo.concurrency
 Version  : 3.7.0
-Release  : 33
+Release  : 34
 URL      : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.7.0.tar.gz
 Source0  : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.7.0.tar.gz
 Summary  : Oslo Concurrency library
