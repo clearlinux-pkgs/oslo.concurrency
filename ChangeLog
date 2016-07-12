@@ -1,11 +1,41 @@
 CHANGES
 =======
 
-3.7.0
+3.11.0
+------
+
+* Imported Translations from Zanata
+
+3.10.0
+------
+
+* Imported Translations from Zanata
+* Updated from global requirements
+* Add reno for releasenotes management
+
+3.9.0
+-----
+
+* Add doc/ to pep8 check
+* Remove unused import statement
+* Add timeout option to ssh_execute
+* Fix wrong import example in docstring
+* Trivial: ignore openstack/common in flake8 exclude list
+
+3.8.0
 -----
 
 * Updated from global requirements
-* Update .gitreview for stable/mitaka
+* Imported Translations from Zanata
+* processutils: add support for missing process limits
+* Remove direct dependency on babel
+* Updated from global requirements
+* Updated from global requirements
+* Updated from global requirements
+* Add a few usage examples for lockutils
+* Revert "Use tempfile.tempdir for lock_path if OSLO_LOCK_PATH is not set"
+* Updated from global requirements
+* Use tempfile.tempdir for lock_path if OSLO_LOCK_PATH is not set
 
 3.6.0
 -----
