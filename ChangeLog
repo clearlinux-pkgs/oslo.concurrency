@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+3.14.0
+------
+
+* Updated from global requirements
+* Fix external lock tests on Windows
+
 3.13.0
 ------
 
