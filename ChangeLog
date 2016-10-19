@@ -1,6 +1,17 @@
 CHANGES
 =======
 
+3.15.0
+------
+
+* Changed the home-page link
+* Change assertTrue(isinstance()) by optimal assert
+* Enable release notes translation
+* Ignore prlimit argument on Windows
+* Updated from global requirements
+* Updated from global requirements
+* Update reno for stable/newton
+
 3.14.0
 ------
 
