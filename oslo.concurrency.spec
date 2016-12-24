@@ -4,7 +4,7 @@
 #
 Name     : oslo.concurrency
 Version  : 3.15.0
-Release  : 44
+Release  : 45
 URL      : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.15.0.tar.gz
 Source0  : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.15.0.tar.gz
 Summary  : Oslo Concurrency library
@@ -50,6 +50,7 @@ BuildRequires : pluggy
 BuildRequires : posix_ipc
 BuildRequires : py-python
 BuildRequires : pyflakes-python
+BuildRequires : pyparsing-python
 BuildRequires : pytest
 BuildRequires : python-dev
 BuildRequires : python-mimeparse-python
