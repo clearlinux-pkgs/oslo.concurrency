@@ -1,6 +1,82 @@
 CHANGES
 =======
 
+3.27.0
+------
+
+* set default python to python3
+* Switch pep8 job to python 3
+* fix lower constraints and uncap eventlet
+* add lower-constraints job
+* Updated from global requirements
+* Updated from global requirements
+
+3.26.0
+------
+
+* Updated from global requirements
+* Updated from global requirements
+* Imported Translations from Zanata
+* Mask passwords only when command execution fails
+* Imported Translations from Zanata
+* Update reno for stable/queens
+* Updated from global requirements
+* Imported Translations from Zanata
+* Updated from global requirements
+* Update doc links in CONTRIBUTING.rst and README.rst
+* Updated from global requirements
+
+3.25.0
+------
+
+* Add python\_exec kwarg to processutils.execute()
+* Updated from global requirements
+* add bandit to pep8 job
+
+3.24.0
+------
+
+* Remove -U from pip install
+* Avoid tox\_install.sh for constraints support
+* Updated from global requirements
+* Remove setting of version/release from releasenotes
+* Updated from global requirements
+* Updated from global requirements
+* Updated from global requirements
+* Imported Translations from Zanata
+
+3.23.0
+------
+
+* Updated from global requirements
+* Updated from global requirements
+* Updated from global requirements
+
+3.22.0
+------
+
+* Minor correction to docstrings
+* Updated from global requirements
+* Updated from global requirements
+* Windows: ensure exec calls don't block other greenthreads
+* Update reno for stable/pike
+* Updated from global requirements
+* Add debug log to indicate when external lock is taken
+
+3.21.0
+------
+
+* Update URLs in documents according to document migration
+* Imported Translations from Zanata
+* Updated from global requirements
+* switch from oslosphinx to openstackdocstheme
+* turn on warning-is-error for sphinx
+* rearrange existing documentation to follow the new layout standard
+* Remove log translations
+* Check reStructuredText documents for common style issues
+* Updated from global requirements
+* Check for SubprocessError by name on Python 3.x
+
 3.20.0
 ------
 
@@ -14,13 +90,13 @@ CHANGES
 * [Fix gate]Update test requirement
 * Updated from global requirements
 * Remove support for py34
-* pbr.version.VersionInfo needs package name (oslo.xyz and not oslo_xyz)
+* pbr.version.VersionInfo needs package name (oslo.xyz and not oslo\_xyz)
 * Update reno for stable/ocata
 
 3.18.0
 ------
 
-* Automatically convert process_input to bytes
+* Automatically convert process\_input to bytes
 * Add Constraints support
 * Show team and repo badges on README
 
@@ -82,7 +158,7 @@ CHANGES
 
 * Add doc/ to pep8 check
 * Remove unused import statement
-* Add timeout option to ssh_execute
+* Add timeout option to ssh\_execute
 * Fix wrong import example in docstring
 * Trivial: ignore openstack/common in flake8 exclude list
 
@@ -97,9 +173,9 @@ CHANGES
 * Updated from global requirements
 * Updated from global requirements
 * Add a few usage examples for lockutils
-* Revert "Use tempfile.tempdir for lock_path if OSLO_LOCK_PATH is not set"
+* Revert "Use tempfile.tempdir for lock\_path if OSLO\_LOCK\_PATH is not set"
 * Updated from global requirements
-* Use tempfile.tempdir for lock_path if OSLO_LOCK_PATH is not set
+* Use tempfile.tempdir for lock\_path if OSLO\_LOCK\_PATH is not set
 
 3.6.0
 -----
@@ -170,7 +246,7 @@ CHANGES
 * Imported Translations from Zanata
 * Move 'history' -> release notes section
 * add auto-generated docs for config options
-* Change ignore-errors to ignore_errors
+* Change ignore-errors to ignore\_errors
 * Updated from global requirements
 * Imported Translations from Zanata
 * Use int enumerations for log error constants
@@ -187,7 +263,7 @@ CHANGES
 
 * Updated from global requirements
 * Updated from global requirements
-* Use oslo_utils reflection to get 'f' callable name
+* Use oslo\_utils reflection to get 'f' callable name
 * flake8 - remove unused rules
 * Imported Translations from Transifex
 * Updated from global requirements
@@ -204,10 +280,10 @@ CHANGES
 -----
 
 * Imported Translations from Transifex
-* Allow preexec_fn method for processutils.execute
+* Allow preexec\_fn method for processutils.execute
 * Updated from global requirements
 * Use pypi name for requirements.txt
-* processutils: ensure on_completion callback is always called
+* processutils: ensure on\_completion callback is always called
 * Updated from global requirements
 * Remove redundant fileutils
 * Add tox target to find missing requirements
@@ -246,30 +322,30 @@ CHANGES
 * Advertise support for Python3.4 / Remove support for 3.3
 * Updated from global requirements
 * Imported Translations from Transifex
-* Remove run_cross_tests.sh
+* Remove run\_cross\_tests.sh
 * Updated from global requirements
 * Updated from global requirements
 
 1.9.0
 -----
 
-* Add binary parameter to execute and ssh_execute
+* Add binary parameter to execute and ssh\_execute
 * Port processutils to Python 3
 * Uncap library requirements for liberty
 * Move fixtures to test-requirements.txt
-* Fix test_as_root* tests to work when run as root
+* Fix test\_as\_root\* tests to work when run as root
 * Add pypi download + version badges
 * Standardize setup.cfg summary for oslo libs
 * Imported Translations from Transifex
 * Updated from global requirements
-* Remove tools/run_cross_tests.sh from openstack-common.conf
+* Remove tools/run\_cross\_tests.sh from openstack-common.conf
 
 1.8.0
 -----
 
 * Switch to non-namespaced module imports
 * Remove py33 env from default tox list
-* Add lockutils.get_lock_path() function
+* Add lockutils.get\_lock\_path() function
 
 1.7.0
 -----
@@ -287,7 +363,7 @@ CHANGES
 -----
 
 * Ability to set working directory
-* Add eventlet test check to new tests __init__.py
+* Add eventlet test check to new tests \_\_init\_\_.py
 * Drop use of namespaced oslo.i18n
 * Updated from global requirements
 * Updated from global requirements
@@ -311,7 +387,7 @@ CHANGES
 * Don't use ConfigFilter for lockutils
 * Report import warnings where the import occurs
 * Port processutils to Python 3
-* Activate pep8 check that _ is imported
+* Activate pep8 check that \_ is imported
 * Drop requirements-py3.txt
 * Updated from global requirements
 * Clean up API documentation
@@ -343,7 +419,7 @@ CHANGES
 * Use six.wraps
 * Clean up lockutils logging
 * Remove unused incubator modules
-* Improve lock_path help and documentation
+* Improve lock\_path help and documentation
 * Add pbr to installation requirements
 
 0.1.0
@@ -355,9 +431,9 @@ CHANGES
 * Updated from global requirements
 * Remove extraneous vim editor configuration comments
 * Add deprecated name test case
-* Make lock_wrapper private
+* Make lock\_wrapper private
 * Support building wheels (PEP-427)
-* Handle Python 3's O_CLOEXEC default
+* Handle Python 3's O\_CLOEXEC default
 * Remove hard dep on eventlet
 * Test with both vanilla and eventlet stdlib
 * Imported Translations from Transifex
@@ -370,7 +446,7 @@ CHANGES
 * Imported Translations from Transifex
 * provide sane cmd exit reporting
 * Imported Translations from Transifex
-* Add lock_path as param to remove_external function
+* Add lock\_path as param to remove\_external function
 * Updated from global requirements
 * Cleanup and adding timing to lockutils logging
 * Imported Translations from Transifex
@@ -406,16 +482,16 @@ CHANGES
 * Remove oslo.log from lockutils
 * lockutils: split tests and run in Python 3
 * Fix exception message in openstack.common.processutils.execute
-* Allow test_lockutils to run in isolation
-* Remove `processutils` dependency on `log`
+* Allow test\_lockutils to run in isolation
+* Remove \`processutils\` dependency on \`log\`
 * Don't import fcntl on Windows
 * Fix broken formatting of processutils.execute log statement
-* Move nova.utils.cpu_count() to processutils module
+* Move nova.utils.cpu\_count() to processutils module
 * pep8: fixed multiple violations
 * fixed typos found by RETF rules
 * Mask passwords that are included in commands
 * Improve help strings
-* Remove str() from LOG.* and exceptions
+* Remove str() from LOG.\* and exceptions
 * Fixed several typos
 * Emit a log statement when releasing internal lock
 * Allow passing environment variables to execute()
@@ -432,8 +508,8 @@ CHANGES
 * Use threading.ThreadError instead of reraising IOError
 * Have the interprocess lock follow lock conventions
 * lockutils: move directory creation in lock class
-* lockutils: remove lock_path parameter
-* lockutils: expand add_prefix
+* lockutils: remove lock\_path parameter
+* lockutils: expand add\_prefix
 * lockutils: remove local usage
 * lockutils: do not grab the lock in creators
 * Remove unused variables
@@ -441,19 +517,19 @@ CHANGES
 * Fix i18n problem in processutils module
 * lockutils: split code handling internal/external lock
 * lockutils: fix testcase wrt Semaphore
-* Use hacking import_exceptions for gettextutils._
+* Use hacking import\_exceptions for gettextutils.\_
 * Correct invalid docstrings
 * Fix violations of H302:import only modules
 * Fixed misspellings of common words
 * Trivial: Make vertical white space after license header consistent
 * Unify different names between Python2/3 with six.moves
 * Remove vim header
-* Use six.text_type instead of unicode function in tests
+* Use six.text\_type instead of unicode function in tests
 * Adjust import order according to PEP8 imports rule
 * fix lockutils.lock() to make it thread-safe
 * Add main() to lockutils that creates temp dir for locks
-* Allow lockutils to get lock_path conf from envvar
-* Correct execute() to check 0 in check_exit_code
+* Allow lockutils to get lock\_path conf from envvar
+* Correct execute() to check 0 in check\_exit\_code
 * Replace assertEquals with assertEqual
 * Move LockFixture into a fixtures module
 * Fix to properly log when we release a semaphore
@@ -467,7 +543,7 @@ CHANGES
 * BaseException.message is deprecated since Python 2.6
 * Fix locking bug
 * Move synchronized body to a first-class function
-* Make lock_file_prefix optional
+* Make lock\_file\_prefix optional
 * Enable H302 hacking check
 * Enable hacking H404 test
 * Use param keyword for docstrings
@@ -477,12 +553,12 @@ CHANGES
 * python3: python3 binary/text data compatbility
 * Removes len() on empty sequence evaluation
 * Added convenience APIs for lockutils
-* Import trycmd and ssh_execute from nova
+* Import trycmd and ssh\_execute from nova
 * Update processutils
-* Use print_function __future__ import
+* Use print\_function \_\_future\_\_ import
 * Improve Python 3.x compatibility
 * Replaces standard logging with common logging
-* Locking edge case when lock_path does not exist
+* Locking edge case when lock\_path does not exist
 * lockutils: add a failing unit test
 * lockutils: improve the external locks test
 * Removes unused imports in the tests module
@@ -497,7 +573,7 @@ CHANGES
 * Fixes import order errors
 * Log when release file lock
 * Eliminate sleep in the lockutils test case (across processes)
-* Disable lockutils test_synchronized_externally
+* Disable lockutils test\_synchronized\_externally
 * Fix import order in openstack/common/lockutils.py
 * Make project pyflakes clean
 * updating sphinx documentation
