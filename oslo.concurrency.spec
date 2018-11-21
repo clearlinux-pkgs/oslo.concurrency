@@ -5,18 +5,18 @@
 # Source0 file verified with key 0x1A541148054E9E38 (infra-root@openstack.org)
 #
 Name     : oslo.concurrency
-Version  : 3.28.1
-Release  : 53
-URL      : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.28.1.tar.gz
-Source0  : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.28.1.tar.gz
-Source99 : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.28.1.tar.gz.asc
+Version  : 3.29.0
+Release  : 54
+URL      : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.29.0.tar.gz
+Source0  : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.29.0.tar.gz
+Source99 : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.29.0.tar.gz.asc
 Summary  : Oslo Concurrency library
 Group    : Development/Tools
 License  : Apache-2.0
-Requires: oslo.concurrency-bin
-Requires: oslo.concurrency-python3
-Requires: oslo.concurrency-license
-Requires: oslo.concurrency-python
+Requires: oslo.concurrency-bin = %{version}-%{release}
+Requires: oslo.concurrency-license = %{version}-%{release}
+Requires: oslo.concurrency-python = %{version}-%{release}
+Requires: oslo.concurrency-python3 = %{version}-%{release}
 Requires: enum34
 Requires: fasteners
 Requires: oslo.config
@@ -67,20 +67,20 @@ python3 components for the oslo.concurrency package.
 
 
 %prep
-%setup -q -n oslo.concurrency-3.28.1
+%setup -q -n oslo.concurrency-3.29.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1537943966
+export SOURCE_DATE_EPOCH=1542839462
 python3 setup.py build
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/oslo.concurrency
-cp LICENSE %{buildroot}/usr/share/doc/oslo.concurrency/LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/oslo.concurrency
+cp LICENSE %{buildroot}/usr/share/package-licenses/oslo.concurrency/LICENSE
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -95,7 +95,7 @@ echo ----[ mark ]----
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/doc/oslo.concurrency/LICENSE
+/usr/share/package-licenses/oslo.concurrency/LICENSE
 
 %files python
 %defattr(-,root,root,-)

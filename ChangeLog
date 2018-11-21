@@ -1,10 +1,19 @@
 CHANGES
 =======
 
+3.29.0
+------
+
+* Add support for fair locks
+* Clean up .gitignore references to personal tools
+* Don't quote {posargs} in tox.ini
+* Always build universal wheels
+
 3.28.1
 ------
 
 * Imported Translations from Zanata
+* Use templates for cover and lower-constraints
 * ignore warning from bandit for using shell=
 * add lib-forward-testing-python3 test job
 * add python 3.6 unit test job
