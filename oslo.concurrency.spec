@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x1A541148054E9E38 (infra-root@openstack.org)
 #
 Name     : oslo.concurrency
-Version  : 3.29.0
-Release  : 55
-URL      : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.29.0.tar.gz
-Source0  : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.29.0.tar.gz
-Source99 : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.29.0.tar.gz.asc
+Version  : 3.29.1
+Release  : 56
+URL      : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.29.1.tar.gz
+Source0  : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.29.1.tar.gz
+Source99 : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.29.1.tar.gz.asc
 Summary  : Oslo Concurrency library
 Group    : Development/Tools
 License  : Apache-2.0
@@ -28,8 +28,11 @@ BuildRequires : buildreq-distutils3
 BuildRequires : pbr
 
 %description
+========================
 Team and repository tags
-        ========================
+========================
+.. image:: https://governance.openstack.org/tc/badges/oslo.concurrency.svg
+:target: https://governance.openstack.org/tc/reference/tags/index.html
 
 %package bin
 Summary: bin components for the oslo.concurrency package.
@@ -67,14 +70,15 @@ python3 components for the oslo.concurrency package.
 
 
 %prep
-%setup -q -n oslo.concurrency-3.29.0
+%setup -q -n oslo.concurrency-3.29.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542839462
+export SOURCE_DATE_EPOCH=1551395777
+export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
 %install

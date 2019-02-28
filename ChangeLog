@@ -1,6 +1,15 @@
 CHANGES
 =======
 
+3.29.1
+------
+
+* add python 3.7 unit test job
+* Change python3.5 job to python3.7 job on Stein+
+* Update hacking version
+* Stop using setup.py build\_sphinx
+* Update mailinglist from dev to discuss
+
 3.29.0
 ------
 
