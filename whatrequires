@@ -1,3 +1,21 @@
 # This file contains recursive sources that require this package
+cinder
+glance
+glance_store
 horizon
+ironic
+ironic-lib
+keystone
+neutron
+neutron-lib
+nova
+os-brick
+os-win
 os-xenapi
+os_vif
+oslo.service
+oslo.vmware
+osprofiler
+pypowervm
+sahara
+tempest
