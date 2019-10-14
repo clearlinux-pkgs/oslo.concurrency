@@ -6,7 +6,7 @@
 #
 Name     : oslo.concurrency
 Version  : 3.30.0
-Release  : 59
+Release  : 60
 URL      : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.30.0.tar.gz
 Source0  : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.30.0.tar.gz
 Source1 : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.30.0.tar.gz.asc
@@ -17,7 +17,6 @@ Requires: oslo.concurrency-bin = %{version}-%{release}
 Requires: oslo.concurrency-license = %{version}-%{release}
 Requires: oslo.concurrency-python = %{version}-%{release}
 Requires: oslo.concurrency-python3 = %{version}-%{release}
-Requires: enum34
 Requires: fasteners
 Requires: oslo.config
 Requires: oslo.i18n
@@ -25,7 +24,6 @@ Requires: oslo.utils
 Requires: pbr
 Requires: six
 BuildRequires : buildreq-distutils3
-BuildRequires : enum34
 BuildRequires : fasteners
 BuildRequires : oslo.config
 BuildRequires : oslo.i18n
@@ -34,11 +32,8 @@ BuildRequires : pbr
 BuildRequires : six
 
 %description
-========================
 Team and repository tags
-========================
-.. image:: https://governance.openstack.org/tc/badges/oslo.concurrency.svg
-:target: https://governance.openstack.org/tc/reference/tags/index.html
+        ========================
 
 %package bin
 Summary: bin components for the oslo.concurrency package.
@@ -83,8 +78,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567651919
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1571082411
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -97,7 +91,7 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/oslo.concurrency
-cp LICENSE %{buildroot}/usr/share/package-licenses/oslo.concurrency/LICENSE
+cp %{_builddir}/oslo.concurrency-3.30.0/LICENSE %{buildroot}/usr/share/package-licenses/oslo.concurrency/57aed0b0f74e63f6b85cce11bce29ba1710b422b
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -112,7 +106,7 @@ echo ----[ mark ]----
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/oslo.concurrency/LICENSE
+/usr/share/package-licenses/oslo.concurrency/57aed0b0f74e63f6b85cce11bce29ba1710b422b
 
 %files python
 %defattr(-,root,root,-)
