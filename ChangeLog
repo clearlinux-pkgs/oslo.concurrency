@@ -1,6 +1,20 @@
 CHANGES
 =======
 
+3.31.0
+------
+
+* Spiff up docs for \*\_with\_prefix
+* Switch to Ussuri jobs
+* tox: Keeping going with docs
+* Document management and history of lock files
+* Bump the openstackdocstheme extension to 1.20
+* Blacklist sphinx 2.1.0 (autodoc bug)
+* Update the constraints url
+* Update master for stable/train
+* Add lock\_with\_prefix convenience utility
+* Some test cleanup
+
 3.30.0
 ------
 
