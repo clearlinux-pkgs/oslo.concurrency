@@ -6,7 +6,7 @@
 #
 Name     : oslo.concurrency
 Version  : 3.31.0
-Release  : 62
+Release  : 63
 URL      : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.31.0.tar.gz
 Source0  : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.31.0.tar.gz
 Source1 : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-3.31.0.tar.gz.asc
