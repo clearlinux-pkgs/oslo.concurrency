@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+4.0.0
+-----
+
+* Drop python 2.7 support and testing
+* Stop configuring install\_command in tox
+* tox: Trivial cleanup
+* Fix remove\_lock test
+
 3.31.0
 ------
 
