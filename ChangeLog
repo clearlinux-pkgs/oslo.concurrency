@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+4.0.1
+-----
+
+* trivial: Cleanup tox.ini
+* ignore reno builds artifacts
+* remove outdated header
+* Stop to build universal wheel
+
 4.0.0
 -----
 
