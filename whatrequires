@@ -2,6 +2,7 @@
 cinder
 glance
 glance_store
+heat
 horizon
 ironic
 ironic-lib

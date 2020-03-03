@@ -6,7 +6,7 @@
 #
 Name     : oslo.concurrency
 Version  : 4.0.1
-Release  : 65
+Release  : 66
 URL      : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-4.0.1.tar.gz
 Source0  : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-4.0.1.tar.gz
 Source1  : http://tarballs.openstack.org/oslo.concurrency/oslo.concurrency-4.0.1.tar.gz.asc
@@ -35,8 +35,29 @@ BuildRequires : six
 ========================
 Team and repository tags
 ========================
+
 .. image:: https://governance.openstack.org/tc/badges/oslo.concurrency.svg
-:target: https://governance.openstack.org/tc/reference/tags/index.html
+    :target: https://governance.openstack.org/tc/reference/tags/index.html
+
+.. Change things from this point on
+
+================
+oslo.concurrency
+================
+
+.. image:: https://img.shields.io/pypi/v/oslo.concurrency.svg
+    :target: https://pypi.org/project/oslo.concurrency/
+    :alt: Latest Version
+
+The oslo.concurrency library has utilities for safely running multi-thread,
+multi-process applications using locking mechanisms and for running
+external processes.
+
+* Free software: Apache license
+* Documentation: https://docs.openstack.org/oslo.concurrency/latest/
+* Source: https://opendev.org/openstack/oslo.concurrency
+* Bugs: https://bugs.launchpad.net/oslo.concurrency
+* Release Notes: https://docs.openstack.org/releasenotes/oslo.concurrency/
 
 %package bin
 Summary: bin components for the oslo.concurrency package.
@@ -68,6 +89,7 @@ python components for the oslo.concurrency package.
 Summary: python3 components for the oslo.concurrency package.
 Group: Default
 Requires: python3-core
+Provides: pypi(oslo.concurrency)
 
 %description python3
 python3 components for the oslo.concurrency package.
@@ -82,7 +104,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1582741112
+export SOURCE_DATE_EPOCH=1583193866
 # -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
