@@ -1,15 +1,12 @@
 # This file contains recursive sources that require this package
 cinder
-glance
 glance_store
 heat
-horizon
 ironic
 ironic-lib
 keystone
 neutron
 neutron-lib
-nova
 os-brick
 os-win
 os-xenapi
@@ -19,5 +16,4 @@ oslo.versionedobjects
 oslo.vmware
 osprofiler
 pypowervm
-sahara
 tempest
