@@ -1,7 +1,6 @@
 # This file contains recursive sources that require this package
 cinder
 glance_store
-heat
 ironic
 ironic-lib
 keystone
