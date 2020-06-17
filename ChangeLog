@@ -1,9 +1,15 @@
 CHANGES
 =======
 
+4.1.1
+-----
+
+* Fix pygments style
+
 4.1.0
 -----
 
+* Stop to use the \_\_future\_\_ module
 * Fix hacking min version to 3.0.1
 * Switch to newer openstackdocstheme and reno versions
 * Remove the unused coding style modules
@@ -22,6 +28,7 @@ CHANGES
 
 * Use unittest.mock instead of third party mock
 * Update hacking for Python3
+* Don't warn on lock removal if file doesn't exist
 
 4.0.1
 -----
