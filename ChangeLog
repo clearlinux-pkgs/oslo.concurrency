@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+4.2.0
+-----
+
+* Add support for timeout to processutils.execute
+
 4.1.1
 -----
 
