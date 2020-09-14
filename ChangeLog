@@ -1,10 +1,17 @@
 CHANGES
 =======
 
+4.3.0
+-----
+
+* Bump bandit version
+* Imported Translations from Zanata
+
 4.2.0
 -----
 
 * Add support for timeout to processutils.execute
+* Update lower-constraints versions
 
 4.1.1
 -----
@@ -21,6 +28,7 @@ CHANGES
 * Remove babel.cfg etc
 * Remove six usage
 * Monkey patch original current\_thread \_active
+* Align contributing doc with oslo's policy
 * Add py38 package metadata
 * Imported Translations from Zanata
 * Bump default tox env from py37 to py38

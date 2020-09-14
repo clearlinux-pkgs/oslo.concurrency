@@ -3,7 +3,6 @@ cinder
 glance_store
 ironic
 ironic-lib
-keystone
 neutron
 neutron-lib
 os-brick
